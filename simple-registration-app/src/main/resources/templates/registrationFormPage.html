@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:utext="${title}"></title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+</head>
+<body>
+	<div class="container register">
+		<div class="row">
+			<div class="col-md-3 register-left">
+				<img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+				<h3>Welcome.</h3>
+			</div>
+			<div class="col-md-9 register-right">
+				<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="home-tab"
+						data-toggle="tab" href="#home" role="tab" aria-controls="home"
+						aria-selected="true">New User</a></li>
+				</ul>
+				<form th:action="@{/register}" th:object="${userForm}" method="POST">
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="home" role="tabpanel"
+							aria-labelledby="home-tab">
+							<h3 class="register-heading">Register New User</h3>
+							<div class="row register-form">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" class="form-control"
+											th:field="*{firstName}" placeholder="First Name *" /> <span
+											class="required-color"
+											th:if="${#fields.hasErrors('firstName')}"
+											th:errors="*{firstName}">..</span>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" th:field="*{lastName}"
+											placeholder="Last Name *" /> <span class="required-color"
+											th:if="${#fields.hasErrors('lastName')}"
+											th:errors="*{lastName}">..</span>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" th:field="*{email}"
+											placeholder="Email*" /> <span class="required-color"
+											th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+
+									<div class="form-group sendotp">
+										<input type="number" class="form-control col-md-8"
+											th:field="*{phoneNumber}" id="phoneNumber"
+											placeholder="Phone Number *" /> <input type="submit"
+											class="sendotpbtn" id="sendOtpBtn" value="Send SMS To Verify"
+											name="action" />
+									</div>
+									<span
+										style="display: block; margin-top: -13px; margin-bottom: 30px; font-size: 15px; color: green; font-weight: 700">[[${message}]]</span>
+
+									<span class="required-color"
+										style="display: block; margin-top: -11px; margin-bottom: 14px;"
+										th:if="${#fields.hasErrors('phoneNumber')}"
+										th:errors="*{phoneNumber}">..</span>
+
+									<div class="form-group">
+										<input type="text" name="VerificationCode"
+											class="form-control" th:field="*{code}"
+											placeholder="Verification Code *" /> <span
+											class="required-color" th:if="${#fields.hasErrors('code')}"
+											th:errors="*{code}">..</span>
+									</div>
+									<div class="form-group">
+										<input type="submit" class="btnRegister" name="action"
+											value="Submit" th:disabled="false" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
