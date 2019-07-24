@@ -1,4 +1,4 @@
-# unifonicTask
+# Unifonic Task
 1-This is application for create user using his basic data (fristName,lastName,phoneNumber,email).
 
 2- to start the application ,clone the project  and import the project as a maven project in your ide
